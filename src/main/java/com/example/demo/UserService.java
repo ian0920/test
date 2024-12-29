@@ -29,7 +29,7 @@ public class UserService {
 	
 	public void deleteUser(Integer id) {
 		Optional<User> u = userRepo.findById(id);
-		User user = u.get();
+		User user = u.orElseThrow(() -> new RuntimeException("no such user"));
 		
 		userRepo.delete(user);
 	}
